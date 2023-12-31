@@ -1,0 +1,31 @@
+//---------------------------------------------------------------------------
+
+#ifndef UCadenaH
+#define UCadenaH
+//---------------------------------------------------------------------------
+#include <System.Classes.hpp>
+#include "VCL.h"
+
+
+const int LONGMAX = 250;
+class CCadena {
+	private:
+		int n;
+		char cadena[LONGMAX];
+	public:
+		CCadena();
+		void setN(int valor);
+		int getN();
+		void setCaracter(int pos, char letra);
+		char getCaracter(int pos);
+		void setCadena(String texto);
+		String getCadena();
+		int contarVocales();
+		bool esVocal(char caracter);
+		char devolverMinuscula(char caracter);
+		void eliminarConsonantes();
+		void eliminar(int pos);
+};
+
+
+#endif

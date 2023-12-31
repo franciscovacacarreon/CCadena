@@ -1,0 +1,169 @@
+//---------------------------------------------------------------------------
+
+#pragma hdrstop
+
+#include "UCadena.h"
+//---------------------------------------------------------------------------
+#pragma package(smart_init)
+
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+CCadena::CCadena() {
+	n = 0;
+}
+
+void CCadena::setN(int valor) {
+	if (valor <= LONGMAX) {
+		n = valor;
+	} else {
+		ShowMessage("Excede la longitud máxima");
+	}
+}
+
+int CCadena::getN() {
+	return n;
+}
+
+void CCadena::setCaracter(int pos, char letra) {
+	if (pos >= 0  &&  pos < n) {
+		cadena[pos] = letra;
+	} else {
+		ShowMessage("Posición no válida.");
+	}
+}
+
+char CCadena::getCaracter(int pos) {
+	if (pos >= 0  &&  pos  < n) {
+		return cadena[pos];
+	} else {
+		ShowMessage("Posición no válida.");
+		return '*';
+	}
+}
+
+void CCadena::setCadena(String texto){
+	int longitud = texto.Length(); // 15
+	setN(longitud);
+	for (int i = 0; i < n; i++) {
+		cadena[i] = texto[i + 1];
+	}
+}
+
+String CCadena::getCadena() {
+	String texto = "";
+	for (int i = 0; i < n; i++) {
+		texto = texto + AnsiString(cadena[i]);
+	}
+	return texto;
+}
+
+int CCadena::contarVocales(){
+	int contador = 0;
+	for (int i = 0; i < n; i++) {
+		if (esVocal(cadena[i]) == true) {
+			contador++;
+		}
+	}
+	return contador;
+}
+
+bool CCadena::esVocal(char caracter){
+
+	caracter = devolverMinuscula(caracter);
+	if (caracter == 'a' || caracter == 'e' ||
+		caracter == 'i' || caracter == 'o' ||
+		caracter == 'u' || caracter == 'á' ||
+		caracter == 'é' || caracter == 'í' ||
+		caracter == 'ó' || caracter == 'ú') {
+
+		return true;
+	} else {
+		return false;
+	}
+}
+
+char CCadena::devolverMinuscula(char caracter){
+	int codigo = (int)caracter;
+	if ((codigo >= 65  &&  codigo <= 90) ||
+		((codigo >= -64  &&  codigo <= -33))) {
+
+		codigo += 32;
+	}
+	return (char)codigo;
+}
+
+char CCadena::devolverMayuscula(char caracter){
+	int codigo = (int)caracter;
+	if ((codigo >= 97  &&  codigo <= 122) ||
+			(codigo >= -32  &&  codigo <= -1)){
+
+		codigo -= 32;
+	}
+	return (char)codigo;
+}
+
+void CCadena::eliminarConsonantes(){
+	for (int i = 0; i < n; i++) {
+		if (!esVocal(cadena[i]) &&  cadena[i] != ' ') {
+			eliminar(i);
+			i--;
+		}
+	}
+}
+
+void CCadena::eliminar(int pos) {
+	for (int i = pos; i < n - 1; i++) {
+		cadena[i] = cadena[i + 1];
+	}
+	n--;
+}
+
+void CCadena::consonantesMayusculaVocalMinuscula(){
+	for (int i = 0; i < n; i++) {
+		if (esVocal(cadena[i])) {
+			cadena[i] = devolverMinuscula(cadena[i]); //A, a
+		} else {
+			cadena[i] = devolverMayuscula(cadena[i]); //h, H
+		}
+	}
+}
+
+int CCadena::devolverStringVectorPalabra(String vectorPalabra[]) {
+	String palabra = "";
+	int contador = 0;
+
+	for (int i = 0; i < n; i++) {
+		if (cadena[i] != ' ') {
+			palabra += cadena[i];
+		} else {
+			vectorPalabra[contador]	= palabra;
+			palabra = "";
+			contador++;
+		}
+	}
+	vectorPalabra[contador] = palabra;
+	return contador;
+}
+
+void CCadena::voltearTexto() {
+
+	String vectorPalabra[LONGMAX];
+	int tamanio = devolverStringVectorPalabra(vectorPalabra);
+
+	int fin = tamanio;
+	for (int i = 0; i < tamanio/2; i++) {
+		String aux = vectorPalabra[i];
+		vectorPalabra[i] = vectorPalabra[fin];
+		vectorPalabra[fin] = aux;
+		fin--;
+	}
+
+	String palabras = "";
+	for (int i = 0; i <= tamanio; i++){
+		palabras += vectorPalabra[i] + " ";	//"estas " //"estas como hola "
+
+	}
+	setCadena(palabras.Trim());
+}
