@@ -235,10 +235,8 @@ void CCadena::mayusculasIgualesMinusculaDiferentes(String palabra) {
 }
 
 int CCadena::contarPalindromos() {
-	String vectorPalabra[LONGMAX];
-	int tamanio = devolverStringVectorPalabra(vectorPalabra);
 	int contador = 0;
-	for (int i = 0; i <= tamanio; i++) {
+	for (int i = 0; i < n; i++) {
 		String palabra = vectorPalabra[i];
 		int longitud = palabra.Length();
 		int fin = longitud;
@@ -254,41 +252,4 @@ int CCadena::contarPalindromos() {
 			contador++;
 		}
 	}
-	return contador;
-}
-
-int CCadena::devolverPosicionSubEncontrada(String subcadena) {
-	int posicion = -1;
-	for (int i = 0; i < n; i++) {
-		int j = 0;
-		int longitud = subcadena.Length();
-		while (j < longitud && cadena[i + j] == subcadena[j + 1]) {
-			j++;
-		}
-		if (j == longitud) {
-			posicion = i;
-			break;
-		}
-	}
-	return posicion;
-}
-
-String CCadena::devolverPalabraMasLarga() {
-
-	String vectorPalabra[LONGMAX];
-	int tamanio = devolverStringVectorPalabra(vectorPalabra);
-
-	int mayorLongitud = 0;
-	String palabraMayor = "";
-
-	for (int i = 0; i <= tamanio; i++) {
-		String palabra = vectorPalabra[i];
-		int longitud = palabra.Length();
-		if (longitud > mayorLongitud) {
-			mayorLongitud = longitud;
-			palabraMayor = palabra;
-		}
-	}
-
-	return palabraMayor;
 }

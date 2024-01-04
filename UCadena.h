@@ -33,6 +33,11 @@ class CCadena {
 		void formarCadenaCaracteres(int tamanio, String vectorPalabra[]);
 		void voltearPalabra();
 		int contarIgualesASub(String sub);
+		void todoMinuscula();
+		void mayusculasIgualesMinusculaDiferentes(String palabra);
+		int contarPalindromos();
+		int devolverPosicionSubEncontrada(String subcadena);
+		String devolverPalabraMasLarga();
 };
 
 

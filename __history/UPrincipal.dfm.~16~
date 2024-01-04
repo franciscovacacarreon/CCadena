@@ -154,13 +154,4 @@ object Form1: TForm1
     TabOrder = 13
     OnClick = Button11Click
   end
-  object Button12: TButton
-    Left = 304
-    Top = 427
-    Width = 161
-    Height = 25
-    Caption = 'Palabra mas larga'
-    TabOrder = 14
-    OnClick = Button12Click
-  end
 end

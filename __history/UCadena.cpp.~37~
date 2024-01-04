@@ -194,3 +194,101 @@ void CCadena::voltearPalabra() {
 
 	formarCadenaCaracteres(tamanio, vectorPalabra);
 }
+
+int CCadena::contarIgualesASub(String sub) {
+	int longitudsub = sub.Length();
+	int contador = 0;
+	for (int i = 0; i <= n - longitudsub; i++) {
+		int j = 0;
+		while (j < longitudsub && cadena[i + j] == sub[j + 1]) {
+			j++;
+		}
+		if (j == longitudsub) {
+			contador++;
+		}
+	}
+	return contador;
+}
+
+void CCadena::todoMinuscula() {
+	for (int i = 0; i < n; i++) {
+		cadena[i] = devolverMinuscula(cadena[i]);
+	}
+}
+
+void CCadena::mayusculasIgualesMinusculaDiferentes(String palabra) {
+	todoMinuscula();
+	for (int i = 0; i < n; i++) { // 19
+		int j = 0;
+		int longitud = palabra.Length();
+		while (j < longitud && cadena[i + j] == devolverMinuscula
+			(palabra[j + 1])) {
+			j++;
+		}
+		if (j == longitud) {
+			for (int k = 0; k < longitud; k++) {
+				cadena[i + k] = devolverMayuscula(cadena[i + k]);
+			}
+		}
+
+	}
+}
+
+int CCadena::contarPalindromos() {
+	String vectorPalabra[LONGMAX];
+	int tamanio = devolverStringVectorPalabra(vectorPalabra);
+	int contador = 0;
+	for (int i = 0; i <= tamanio; i++) {
+		String palabra = vectorPalabra[i];
+		int longitud = palabra.Length();
+		int fin = longitud;
+		bool sw = true;
+		for (int j = 1; j <= longitud / 2; j++) {
+			if (palabra[j] != palabra[fin]) {
+				sw = false;
+				break;
+			}
+			fin--;
+		}
+		if (sw == true) {
+			contador++;
+		}
+	}
+	return contador;
+}
+
+int CCadena::devolverPosicionSubEncontrada(String subcadena) {
+	int posicion = -1;
+	for (int i = 0; i < n; i++) {
+		int j = 0;
+		int longitud = subcadena.Length();
+		while (j < longitud && cadena[i + j] == subcadena[j + 1]) {
+			j++;
+		}
+		if (j == longitud) {
+			posicion = i;
+			break;
+		}
+	}
+	return posicion;
+}
+
+String CCadena::devolverPalabraMasLarga() {
+
+	String vectorPalabra[LONGMAX];
+	int tamanio = devolverStringVectorPalabra(vectorPalabra);
+
+	int mayorLongitud = 0;
+	UnicodeString palabraMayor = "";
+
+	for (int i = 0; i <= tamanio; i++) {
+		String palabra = vectorPalabra[i];
+		int longitud = palabra.Length();
+		if (longitud > mayorLongitud) {
+			mayorLongitud = longitud;
+			palabraMayor = palabra;
+		}
+	}
+
+	return AnsiString(palabraMayor);
+}

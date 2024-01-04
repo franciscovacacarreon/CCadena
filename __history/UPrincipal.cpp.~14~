@@ -104,30 +104,3 @@ void __fastcall TForm1::Button9Click(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TForm1::Button10Click(TObject *Sender)
-{
-	String texto = ECadena->Text;
-	cadena->setCadena(texto);
-
-	EResultado->Text = cadena->contarPalindromos();
-}
-//---------------------------------------------------------------------------
-
-void __fastcall TForm1::Button11Click(TObject *Sender)
-{
-	String texto = ECadena->Text;
-	cadena->setCadena(texto);
-
-	EResultado->Text = cadena->devolverPosicionSubEncontrada(ESub->Text);
-}
-//---------------------------------------------------------------------------
-
-void __fastcall TForm1::Button12Click(TObject *Sender)
-{
-    String texto = ECadena->Text;
-	cadena->setCadena(texto);
-
-	EResultado->Text = cadena->devolverPalabraMasLarga();
-}
-//---------------------------------------------------------------------------
-

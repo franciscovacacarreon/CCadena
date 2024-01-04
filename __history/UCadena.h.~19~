@@ -23,6 +23,20 @@ class CCadena {
 		int contarVocales();
 		bool esVocal(char caracter);
 		char devolverMinuscula(char caracter);
+		char devolverMayuscula(char caracter);
+		void eliminarConsonantes();
+		void eliminar(int pos);
+
+		void consonantesMayusculaVocalMinuscula();
+		int devolverStringVectorPalabra(String vectorPalabra[]);
+		void voltearTexto();
+		void formarCadenaCaracteres(int tamanio, String vectorPalabra[]);
+		void voltearPalabra();
+		int contarIgualesASub(String sub);
+		void todoMinuscula();
+		void mayusculasIgualesMinusculaDiferentes(String palabra);
+		int contarPalindromos();
+		int devolverPosicionSubEncontrada(String subcadena);
 };
 
 

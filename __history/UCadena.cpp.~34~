@@ -272,23 +272,3 @@ int CCadena::devolverPosicionSubEncontrada(String subcadena) {
 	}
 	return posicion;
 }
-
-String CCadena::devolverPalabraMasLarga() {
-
-	String vectorPalabra[LONGMAX];
-	int tamanio = devolverStringVectorPalabra(vectorPalabra);
-
-	int mayorLongitud = 0;
-	String palabraMayor = "";
-
-	for (int i = 0; i <= tamanio; i++) {
-		String palabra = vectorPalabra[i];
-		int longitud = palabra.Length();
-		if (longitud > mayorLongitud) {
-			mayorLongitud = longitud;
-			palabraMayor = palabra;
-		}
-	}
-
-	return palabraMayor;
-}

@@ -122,12 +122,3 @@ void __fastcall TForm1::Button11Click(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TForm1::Button12Click(TObject *Sender)
-{
-    String texto = ECadena->Text;
-	cadena->setCadena(texto);
-
-	EResultado->Text = cadena->devolverPalabraMasLarga();
-}
-//---------------------------------------------------------------------------
-
